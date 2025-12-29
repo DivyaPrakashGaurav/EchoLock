@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="Logo.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoLock Installation</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+
+        :root {
+            --neon: #00f2ff;
+            --bg: #050505;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .nav-float {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            top: 20px;
+        }
+
+        .kinetic-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.08) 0%, transparent 70%);
+        }
+
+        .bar-anim {
+            animation: grow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes grow {
+            from {
+                height: 4px;
+            }
+
+            to {
+                height: 16px;
+            }
+        }
+
+        .doc-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .step-number {
+            font-size: 5rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.06);
+            position: absolute;
+            top: -35px;
+            right: 20px;
+            transition: all 0.4s ease;
+        }
+
+        /* 🔥 Only number glows on hover */
+        .doc-card:hover .step-number {
+            color: rgba(0, 242, 255, 0.6);
+            text-shadow: 0 0 35px rgba(0, 242, 255, 0.9);
+        }
+
+        /* Card */
+        .doc-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            /* prevents glow leakage */
+        }
+
+        /* Step Number */
+        .step-number {
+            font-size: 5rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.08);
+            position: absolute;
+            top: -35px;
+            right: 20px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            pointer-events: none;
+        }
+
+        /* Glow ONLY on hover */
+        .doc-card:hover .step-number {
+            color: rgba(0, 242, 255, 0.5);
+            text-shadow:
+                0 0 4px rgba(0, 242, 255, 0.2),
+                0 0 8px rgba(0, 242, 255, 0.12);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div
+        class="fixed left-1/2 -translate-x-1/2 w-[90%] max-w-5xl nav-float z-50 py-3 px-6 md:px-10 flex justify-between items-center">
+
+        <!-- LEFT: LOGO + NAME -->
+        <a href="index.html">
+            <div class="flex items-center gap-3">
+                <img src="./Assets/Logo.png" alt="EchoLock Logo" class="w-12 h-12 object-contain shrink-0">
+                <span class="text-xl tracking-widest">
+                    Echo<span class="text-cyan-400">Lock</span>
+                </span>
+            </div>
+        </a>
+
+        <!-- DESKTOP MENU -->
+        <div class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em]">
+            <a href="docs.html" class="hover:text-cyan-400 transition">Docs</a>
+            <a href="install.html" class="hover:text-cyan-400 transition">Installation</a>
+            <a href="index.html#feedback" class="hover:text-cyan-400 transition">Feedback</a>
+        </div>
+
+        <!-- MOBILE MENU BUTTON -->
+        <button onclick="toggleMenu()" class="md:hidden text-cyan-400 text-xl">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- CTA -->
+        <a href="./Assets/Download/EchoLock_Setup_v1.0.0.exe" download
+            class="hidden md:inline-block bg-white text-black py-3 px-6 rounded-full font-black">
+            Get App
+        </a>
+
+
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="hidden fixed top-24 left-1/2 -translate-x-1/2 w-[90%]
+            bg-black/80 backdrop-blur-xl border border-white/10
+            rounded-2xl p-6 z-40 md:hidden">
+
+        <nav class="flex flex-col gap-6 text-center text-xs font-bold uppercase tracking-[0.3em]">
+            <a href="docs.html" class="hover:text-cyan-400">Docs</a>
+            <a href="install.html" class="hover:text-cyan-400">Installation</a>
+            <a href="index.html#feedback" class="hover:text-cyan-400">Feedback</a>
+
+            <a href="./Assets/Download/EchoLock_Setup_v1.0.0.exe" download
+                class="bg-white text-black py-3 px-6 rounded-full font-black">
+                Get App
+            </a>
+
+        </nav>
+    </div>
+
+    <!-- HERO -->
+    <section class="relative min-h-[65vh] flex items-center justify-center text-center px-6 pt-32 overflow-hidden">
+
+        <!-- Center Logo Background -->
+        <img src="./Assets/Logo1.png" class="absolute w-[60vw] max-w-xl opacity-[0.07] -z-10
+            left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+
+        <h1 class="text-5xl md:text-7xl font-bold">
+            INSTALLATION <span class="text-cyan-400">GUIDE</span>
+        </h1>
+
+    </section>
+
+    <!-- INSTALLATION -->
+    <section class="py-24 px-6 max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-16">Installation</h2>
+
+        <div class="grid md:grid-cols-3 gap-12">
+
+            <!-- STEP 1 -->
+            <div class="doc-card p-8">
+                <div class="step-number">01</div>
+                <h3 class="text-xl font-bold mb-3">Download</h3>
+                <p class="text-slate-400 text-sm">
+                    Download EchoLock from the official website.
+                </p>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="doc-card p-8">
+                <div class="step-number">02</div>
+                <h3 class="text-xl font-bold mb-3">Install</h3>
+                <p class="text-slate-400 text-sm">
+                    Run as Administrator and allow microphone permissions.
+                </p>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="doc-card p-8">
+                <div class="step-number">03</div>
+                <h3 class="text-xl font-bold mb-3">Calibrate</h3>
+                <p class="text-slate-400 text-sm">
+                    Record your unlock phrase multiple times.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HOW TO USE -->
+    <section class="py-24 px-6 bg-white/5">
+        <h2 class="text-3xl font-bold text-center mb-16">How to Use</h2>
+
+        <div class="max-w-6xl mx-auto space-y-20">
+
+            <!-- STEP 1 -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <img src="Assets/Step1.png" class="rounded-2xl w-full">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Set Your Voice Key</h3>
+                    <p class="text-slate-400 text-sm">
+                        Enter a simple and clear voice keyword (for example: lock, Bye, Shutdown). <br>
+                        This keyword will be used to lock your PC using your voice.
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="grid md:grid-cols-2 gap-12 items-center md:flex-row-reverse">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Allow Microphone Access</h3>
+                    <p class="text-slate-400 text-sm">
+                        Ensure your microphone is enabled and working properly. <br>
+                        EchoLock runs silently in the background and listens only for your voice key.
+                    </p>
+                </div>
+                <img src="Assets/Step2.png" class="rounded-2xl w-full">
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <img src="Assets/Step3.png" class="rounded-2xl w-full">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Manage & Check Commands</h3>
+                    <p class="text-slate-400 text-sm">
+                        You can view, edit, or manage your voice commands by clicking on the Commands menu inside
+                        EchoLock.
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <!-- <div class="grid md:grid-cols-2 gap-12 items-center md:flex-row-reverse">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Unlock with Voice</h3>
+                    <p class="text-slate-400 text-sm">
+                        Speak your registered command clearly to unlock the PC.
+                    </p>
+                </div>
+                <img src="assets/use-2.png" class="rounded-2xl w-full">
+            </div> -->
+
+        </div>
+    </section>
+
+    <!-- UNINSTALL -->
+    <section class="py-24 px-6 max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-16">Uninstallation</h2>
+
+        <div class="space-y-20">
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <img src="Assets/work-4.jpeg" class="rounded-2xl w-full">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Open EchoLock</h3>
+                    <p class="text-slate-400 text-sm">
+                        Launch EchoLock and navigate to Settings.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center md:flex-row-reverse">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Start Uninstall Process</h3>
+                    <p class="text-slate-400 text-sm">
+                        Click on the Continue Uninstall button.
+                    </p>
+                </div>
+                <img src="Assets/Uninstall-Step1.png" class="rounded-2xl w-full">
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <img src="Assets/Uninstall-Step2.png" class="rounded-2xl w-full">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Confirm Uninstallation</h3>
+                    <p class="text-slate-400 text-sm">
+                        A confirmation popup will appear: <br>
+                        “Are you sure you want to uninstall EchoLock?” <br>
+                        Click Yes to proceed <br>
+                        Click No to cancel <br>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- -------------Complete Delete------------------------- -->
+    <section class="py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+            <!-- SECTION HEADING -->
+            <div class="mb-20 text-center">
+                <h2 class="text-4xl font-bold tracking-tight">
+                    Complete Uninstallation
+                </h2>
+                <p class="mt-4 text-slate-500 max-w-2xl mx-auto">
+                    Follow these steps to safely and completely remove EchoLock from your system.
+                </p>
+            </div>
+
+            <!-- STEPS GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <!-- STEP 02 -->
+                <div class="relative group">
+                    <div
+                        class="text-[8rem] font-bold text-white/5 absolute -top-20 -left-10 group-hover:text-cyan-500/10 transition">
+                        01
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">
+                        Open Control Panel
+                    </h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Press <b>Windows + R</b>, type <code>control</code>, and press <b>Enter</b>.
+                        This will open the Windows Control Panel.
+                    </p>
+                </div>
+
+                <!-- STEP 03 -->
+                <div class="relative group">
+                    <div
+                        class="text-[8rem] font-bold text-white/5 absolute -top-20 -left-10 group-hover:text-cyan-500/10 transition">
+                        02
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">
+                        Uninstall EchoLock
+                    </h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Go to <b>Programs &gt; Programs and Features</b>,
+                        locate <b>EchoLock</b>, and click <b>Uninstall</b>.
+                    </p>
+                </div>
+
+                <!-- STEP 04 -->
+                <div class="relative group">
+                    <div
+                        class="text-[8rem] font-bold text-white/5 absolute -top-20 -left-10 group-hover:text-cyan-500/10 transition">
+                        03
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 relative z-10">
+                        Restart System
+                    </h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Restart your PC to ensure all EchoLock services
+                        and background components are fully removed.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <footer class="py-12 border-t border-white/5 px-6 bg-black/20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+
+            <!-- Left: Branding -->
+            <div class="flex items-center gap-3">
+                <span class="text-sm font-bold tracking-widest uppercase">
+                    EchoLock
+                </span>
+                <span class="text-[10px] text-slate-500 tracking-[0.3em] uppercase">
+                    Lock at the speed of sound
+                </span>
+            </div>
+
+            <!-- Center: Links -->
+            <div class="flex gap-6 text-[10px] uppercase tracking-[0.35em] text-slate-500">
+                <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
+                <a href="install.html" class="hover:text-cyan-400 transition">Installation</a>
+                <a href="docs.html" class="hover:text-cyan-400 transition">Docs</a>
+                <a href="index.html#feedback" class="hover:text-cyan-400 transition">Feedback</a>
+            </div>
+
+            <!-- Right: Copyright -->
+            <div class="text-[10px] text-slate-600 tracking-[0.4em] uppercase text-center md:text-right">
+                © 2025 EchoLock Protocol
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("hidden");
+        }
+    </script>
+
+</body>
+
+</html>

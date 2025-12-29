@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="Logo.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoLock Documentation</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+
+        :root {
+            --neon: #00f2ff;
+            --bg: #050505;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .nav-float {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            top: 20px;
+        }
+
+        .kinetic-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.08) 0%, transparent 70%);
+        }
+
+        .bar-anim {
+            animation: grow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes grow {
+            from {
+                height: 4px;
+            }
+
+            to {
+                height: 16px;
+            }
+        }
+
+        .doc-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div
+        class="fixed left-1/2 -translate-x-1/2 w-[90%] max-w-5xl nav-float z-50 py-3 px-6 md:px-10 flex justify-between items-center">
+
+        <!-- LEFT: LOGO + NAME -->
+        <a href="index.html">
+            <div class="flex items-center gap-3">
+                <img src="./Assets/Logo.png" alt="EchoLock Logo" class="w-12 h-12 object-contain shrink-0">
+                <span class="text-xl tracking-widest">
+                    Echo<span class="text-cyan-400">Lock</span>
+                </span>
+            </div>
+        </a>
+
+        <!-- DESKTOP MENU -->
+        <div class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em]">
+            <a href="docs.html" class="hover:text-cyan-400 transition">Docs</a>
+            <a href="install.html" class="hover:text-cyan-400 transition">Installation</a>
+            <a href="index.html#feedback" class="hover:text-cyan-400 transition">Feedback</a>
+        </div>
+
+        <!-- MOBILE MENU BUTTON -->
+        <button onclick="toggleMenu()" class="md:hidden text-cyan-400 text-xl">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- CTA -->
+        <a href="./Assets/Download/EchoLock_Setup_v1.0.0.exe" download
+            class="hidden md:inline-block bg-white text-black py-3 px-6 rounded-full font-black">
+            Get App
+        </a>
+
+
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="hidden fixed top-24 left-1/2 -translate-x-1/2 w-[90%]
+            bg-black/80 backdrop-blur-xl border border-white/10
+            rounded-2xl p-6 z-40 md:hidden">
+
+        <nav class="flex flex-col gap-6 text-center text-xs font-bold uppercase tracking-[0.3em]">
+            <a href="docs.html" class="hover:text-cyan-400">Docs</a>
+            <a href="install.html" class="hover:text-cyan-400">Installation</a>
+            <a href="index.html#feedback" class="hover:text-cyan-400">Feedback</a>
+
+            <a href="./Assets/Download/EchoLock_Setup_v1.0.0.exe" download
+                class="bg-white text-black py-3 px-6 rounded-full font-black">
+                Get App
+            </a>
+
+        </nav>
+    </div>
+
+    <!-- HERO -->
+    <section class="relative min-h-[60vh] flex items-center justify-center text-center px-6 pt-32 overflow-hidden">
+
+        <img src="./Assets/Logo1.png" class="absolute w-[60vw] max-w-xl opacity-[0.06] -z-10
+            left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+
+        <h1 class="text-5xl md:text-7xl font-bold">
+            DOCUMENTATION
+        </h1>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="doc-card p-10">
+            <h2 class="text-3xl font-bold mb-6">What is EchoLock?</h2>
+            <p class="text-slate-400 leading-relaxed text-sm">
+                1. Introduction: The Vision Behind EchoLock <br>
+                EchoLock is a specialized, privacy-centric Windows security utility designed to bridge the gap between
+                convenience and workstation protection. In an era where digital privacy is paramount, EchoLock provides
+                a hands-free solution for securing your computer using only the power of your <br> <br>
+
+                Core Privacy First: <br>
+                Unlike traditional voice assistants, EchoLock is built to be a "Zero-Cloud" application.
+                It processes audio locally on your device, ensuring your voice never leaves your machine. <br><br>
+
+                Speed & Efficiency: <br>
+                Guided by the slogan "lock at the speed of sound," the app is optimized for
+                near-instant execution. <br> <br>
+
+                User-Centric Security: <br>
+                By allowing users to define their own unique lock phrases, the app adds a
+                personalized layer of security that is difficult for others to guess or trigger accidentally. <br><br>
+
+                Why EchoLock? <br>
+                For developers, students, and professionals—like those studying CSE in Bhopal—maintaining security when
+                stepping away from a desk is vital. EchoLock replaces the need for manual keystrokes (Win + L) with a
+                seamless, voice-activated system that remains vigilant in the background.
+            </p>
+        </div>
+    </section>
+
+    <!-- SYSTEM REQUIREMENTS -->
+    <section class="py-24 px-6 bg-white/5">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+
+            <div class="doc-card p-10">
+                <h2 class="text-2xl font-bold mb-6">Supported Systems</h2>
+                <ul class="text-slate-400 text-sm space-y-3">
+                    <li>• Windows 10 (64-bit)</li>
+                    <li>• Windows 11 (64-bit)</li>
+                    <li>• Microphone (Built-in or External)</li>
+                    <li>• Minimum 4GB RAM</li>
+                    <li>• Works completely offline</li>
+                </ul>
+            </div>
+
+            <div class="doc-card p-10">
+                <h2 class="text-2xl font-bold mb-6">Current Version</h2>
+                <ul class="text-slate-400 text-sm space-y-3">
+                    <li>• Version: <b>v1.0.0</b></li>
+                    <li>• Release Type: Stable</li>
+                    <li>• Architecture: Desktop (Offline)</li>
+                    <li>• Last Update: 2025</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="py-24 px-6 max-w-6xl mx-auto">
+
+        <!-- Heading -->
+        <h2 class="text-3xl font-bold text-center mb-6">Core Features</h2>
+
+        <!-- Description under heading -->
+        <p class="text-slate-400 text-sm md:text-base text-center max-w-3xl mx-auto mb-20 leading-relaxed">
+            EchoLock is built to deliver high-speed, voice-activated desktop security while maintaining complete
+            user privacy. Below are the core features that define how the application works and what makes it
+            secure, efficient, and fully offline.
+        </p>
+
+        <!-- Feature Cards -->
+        <div class="grid md:grid-cols-3 gap-12">
+
+            <!-- Feature 1 -->
+            <div class="doc-card p-8">
+                <h3 class="font-bold mb-3">Voice Lock / Unlock</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    <b>Secure Voice-Activated Locking</b><br><br>
+                    Hands-free security that allows users to instantly lock their Windows workstation using
+                    custom-defined voice phrases without touching the keyboard.<br><br>
+
+                    <b>Hardware Interop:</b> Communicates directly with the Windows system through
+                    native locking mechanisms, ensuring the same level of security as a manual
+                    <code>Win + L</code> operation.
+                </p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="doc-card p-8">
+                <h3 class="font-bold mb-3">Offline Processing</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    <b>Privacy-First “Zero-Cloud” Model</b><br><br>
+                    EchoLock performs all speech recognition and command processing locally on
+                    your system without any internet dependency.<br><br>
+
+                    <b>No Data Transmission:</b> Audio input and voice commands are never uploaded
+                    to external servers, ensuring complete user privacy.
+                </p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="doc-card p-8">
+                <h3 class="font-bold mb-3">Custom Commands & Recognition Logic</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    <b>Dynamic Synchronization:</b> Custom voice commands are recognized instantly
+                    without requiring application restart.<br><br>
+
+                    <b>Grammar Isolation:</b> The engine listens only for whitelisted phrases,
+                    reducing false triggers from background noise.<br><br>
+
+                    <b>Security Threshold:</b> Enforces a strict confidence score to prevent
+                    unauthorized or accidental unlock attempts.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section class="py-24 px-6 bg-white/5">
+        <div class="max-w-6xl mx-auto doc-card p-10">
+            <h2 class="text-3xl font-bold mb-6">How EchoLock Works: The Workflow</h2>
+            <p class="text-slate-400 text-sm leading-relaxed">
+                EchoLock operates through a four-stage process that prioritizes speed, accuracy, and user privacy.
+                <br><br>
+
+                1. Audio Capture & Pre-processing
+                Active Listening: The application uses the System.Speech.Recognition library to monitor the default
+                system microphone in the background. <br>
+
+                Local Processing: Audio signals are processed entirely on the local CPU. No data is recorded, cached, or
+                transmitted to any external servers, fulfilling the Zero-Cloud privacy model. <br><br>
+
+                2. Recognition & Confidence Analysis
+                Grammar Isolation: The engine does not perform general dictation. It uses Choices and GrammarBuilder to
+                create a strict "whitelist" of allowed phrases defined in your commands.json file. <br>
+
+                Scoring: For every detected sound, the Speech API (SAPI) generates a confidence score between 0.0 and
+                1.0. <br>
+
+                Threshold Filtering: EchoLock enforces a strict 0.80 (80%) confidence threshold. If the recognized sound
+                scores 0.79 or lower, the engine rejects the input to prevent accidental locks from background noise.
+                <br><br>
+
+                3. Synchronization & Persistence
+                Instant Sync: When you add a new command on the Dashboard, the ReloadGrammar() method instantly updates
+                the engine's active vocabulary without requiring an application restart. <br>
+
+                Registry Integration: To ensure the PC is protected as soon as you log in, EchoLock adds its executable
+                path to the Windows Registry (HKCU\...\Run) for automated startup. <br><br>
+
+                4. System Action (The Lock)
+                Kernel Call: Once a command is validated, the application uses P/Invoke to communicate with the Windows
+                kernel. <br>
+
+                LockWorkStation: It executes the LockWorkStation() function from the user32.dll library, which instantly
+                locks the PC just like the Win + L keyboard shortcut.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECURITY -->
+    <section class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="doc-card p-10">
+            <h2 class="text-3xl font-bold mb-6">Privacy & Security</h2>
+            <p class="text-slate-400 text-sm space-y-3">
+                Privacy & Security: The EchoLock Commitment
+                EchoLock is designed with a Privacy-First architecture, ensuring that your voice and system remain
+                protected without compromising personal data. <br><br>
+
+                1. Zero-Cloud Privacy Model
+                100% Offline Processing: Unlike standard voice assistants, EchoLock requires no internet connection.
+                <br>
+
+                No Data Transmission: All audio-to-text conversion is performed locally on your CPU; no voice data is
+                ever transmitted to external servers. <br>
+
+                Transient Audio Handling: The application processes audio in real-time within the system's RAM. It does
+                not record, save, or cache your voice recordings to any storage medium. <br><br>
+
+                2. Advanced Recognition Security
+                Strict Confidence Filtering: To prevent "false positives" (accidental locks), the engine enforces a high
+                0.80 (80%) confidence threshold. <br>
+
+                Grammar Isolation: The engine utilizes Choices and GrammarBuilder to create a strict whitelist. It
+                exclusively listens for your defined commands and ignores unrelated background conversations. <br>
+
+                Noise Rejection: Any sound scoring 0.79 or lower is automatically discarded by the engine logic.
+                <br><br>
+
+                3. System-Level Protection
+                Native Windows Locking: EchoLock communicates directly with the Windows kernel via the user32.dll
+                library. <br>
+
+                Kernel Call Execution: It triggers the LockWorkStation() function, providing the same level of
+                cryptographic security as the manual Win + L shortcut. <br>
+
+                Startup Integrity: The app integrates with the Windows Registry (HKCU\...\Run) to ensure protection is
+                active from the moment the user logs in. <br><br>
+
+                4. Local Data Integrity
+                Encapsulated Storage: Your personalized command phrases are stored locally in a commands.json file
+                within the application's root directory. <br>
+
+                JSON Serialization: Data is handled using the JavaScriptSerializer class, ensuring it remains structured
+                and only accessible by the EchoLock service. <br>
+
+                Clean Uninstallation: The integrated uninstaller clears all registry entries and performs a recursive
+                deletion of the app folder, leaving no trace on the host system.
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/5 px-6 bg-black/20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+
+            <!-- Left: Branding -->
+            <div class="flex items-center gap-3">
+                <span class="text-sm font-bold tracking-widest uppercase">
+                    EchoLock
+                </span>
+                <span class="text-[10px] text-slate-500 tracking-[0.3em] uppercase">
+                    Lock at the speed of sound
+                </span>
+            </div>
+
+            <!-- Center: Links -->
+            <div class="flex gap-6 text-[10px] uppercase tracking-[0.35em] text-slate-500">
+                <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
+                <a href="install.html" class="hover:text-cyan-400 transition">Installation</a>
+                <a href="docs.html" class="hover:text-cyan-400 transition">Docs</a>
+                <a href="index.html#feedback" class="hover:text-cyan-400 transition">Feedback</a>
+            </div>
+
+            <!-- Right: Copyright -->
+            <div class="text-[10px] text-slate-600 tracking-[0.4em] uppercase text-center md:text-right">
+                © 2025 EchoLock Protocol
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("hidden");
+        }
+    </script>
+
+</body>
+
+</html>
